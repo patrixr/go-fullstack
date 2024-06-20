@@ -1,43 +1,105 @@
-# Golang Fullstack Template 🚀
+# The Art of Simple (But Thriving) Side Projects 🚀
 
-## About
+## Background
 
-`go-fullstack` is a full-stack setup that leverages Pocketbase, Tailwind CSS, htmx, Alpine.js, and Golang. This project includes a ready-to-go Docker Compose setup with a Cloudflare tunnel for easy deployment.
+In today's tech landscape, we're often bombarded with endless integrations and coupling across frameworks, cloud providers, managed databases, and SaaS products.
 
-1. [Features](#features)
-2. [Project Structure](#project-structure)
-3. [Getting Started](#getting-started)
-   - [Prerequisites](#prerequisites)
-   - [Dependencies](#dependencies)
-   - [Getting Started Guide](#getting-started-guide)
-   - [Development Workflow](#development-workflow)
-       - [Live Reload](#live-reload)
-       - [Compile Tailwind CSS](#compile-tailwind-css)
-       - [Generate templ files](#generate-templ-files)
-       - [Docker](#docker)
-4. [Data Migrations](#data-migrations)
-5. [Contributing](#contributing)
+The purpose of this template is to demonstrate how to kickstart a side project with minimal integrations, freeing ourselves from the _"freemium entanglement"_ that often accompanies modern development.
 
-## Features
+This project is built with the following philosophy in mind:
 
-- **Pocketbase**: Handles the backend and database.
+> Fall in love with the problem, not the solution.
+
+This means focusing on solving the problem at hand, rather than getting bogged down by the tools we use. Our goal is to get things up and running quickly, allowing us to concentrate on the issues we're passionate about.
+
+![](assets/meme.png)
+
+## Design Principles
+
+To achieve this, we've established a set of basic design principles:
+
+- **Single Codebase**: Everything should be contained within a single codebase.
+- **Easy Data Management**: Data should be straightforward to manage and migrate.
+- **Maintainability and Extensibility**: The project doesn't have to be perfect, but it should be easy to maintain and extend.
+- **Simple Deployment**: It should be easy to deploy, even from a Raspberry Pi.
+- **Focused on Side Projects**: It doesn't need to scale horizontally; this is a side project, after all.
+- **Rich in Features**: Simple does not mean basic; it should remain feature-rich.
+- **Minimal External Dependencies**: We should avoid depending on external services unless they are crucial to the project.
+- **Performance with Simplicity**: It should be performant, but not at the expense of simplicity.
+
+By adhering to these principles, we aim to build side projects that are not only effective but also enjoyable to develop and maintain.
+
+## Table of Contents
+
+- [Background](#background)
+- [Design Principles](#design-principles)
+- [Key Choices](#key-choices)
+    - [Golang](#golang)
+    - [Pocketbase](#pocketbase)
+    - [Cloudflare Tunnel](#cloudflare-tunnel)
+- [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Dependencies](#dependencies)
+- [Development Workflow](#development-workflow)
+  - [Live Reload](#live-reload)
+  - [Compile Tailwind and Templ manually](#compile-tailwind-and-templ-manually)
+  - [Docker](#docker)
+- [Cloudflare Tunnel](#cloudflare-tunnel-1)
+- [Data Migrations](#data-migrations)
+- [Contributing](#contributing)
+
+## Key choices
+
+### Golang
+
+Golang was an easy choice for me. It's what I call "the good kind of boring". It's simple, fast, and easy to deploy, perfect for focusing on the problem and not letting the technology get in the way.
+
+### Vertical Scaling
+
+Most SaaS offerings out there make the promise of a free tier with horizontal scaling. But let's be honest, we're really just binding ourselves to their platform, for something we likely don't need.
+
+I truly think people underestimate how far vertical scaling, with good old caching, can take you. This project is built with that in mind.
+
+### Pocketbase
+
+Alongside that, I decided to use [Pocketbase](https://pocketbase.io/) as the backbone of this project. Pocketbase is a simple, fast, and easy-to-use CMS that can be used [as a framework](https://pocketbase.io/docs/use-as-framework). It is extremely lightweight and allows you to build a backend and database in a single file.
+
+It comes out of the box with:
+- Rest APIs
+- Database (let's go Sqlite!)
+- Admin Panel
+- Users and Permissions
+- Real-time updates
+- Emails
+- Automatic migrations
+- Event hooks
+- And so much more
+
+### Cloudflare Tunnel
+
+I wanted to make it easy to deploy this project from anywhere, even from a Raspberry Pi, and to use a CDN to limit the load on the server. That's how I landed on [Cloudflare Tunnels](https://www.cloudflare.com/products/tunnel/), a secure way to expose your local server to the internet (with caching!)
+
+I am aware it technically goes against the "minimal external dependencies" principle, but I believe it's a good trade-off for the simplicity and ease of deployment. Also it doesn't intrude in the codebase itself, it's simply a line in the Docker Compose file.
+
+### Other cool additions
+
 - **Tailwind CSS**: Utility-first CSS framework for styling.
 - **htmx**: Enhances HTML with AJAX, CSS Transitions, WebSockets, and Server-Sent Events.
 - **Alpine.js**: Lightweight JavaScript framework for handling UI components.
-- **Golang**: Powers the backend server.
 - **Docker Compose**: Simplifies deployment and environment configuration (optional).
-- **Cloudflare Tunnel**: Securely exposes your local server to the internet (configured in Docker compose)
 - **Air**: Provides live reload for development.
 
-## Project Structure
+## Getting started
+
+### Project Structure
 
 - **Pages**: Located in `internal/views/pages`.
 - **Components**: Located in `internal/views/components`.
 - **Fragments**: Located in `internal/views/fragments`. Fragments are small pieces of HTML that can be returned for usage with htmx.
 - **Layouts**: Located in `internal/views/layouts`.
 - **Router Configuration**: Configure routes in `internal/core/router`.
-
-## Getting started
 
 ### Prerequisites
 
