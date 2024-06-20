@@ -1,4 +1,4 @@
-# go-fullstack
+# Golang Fullstack Template 🚀
 
 ## About
 
@@ -66,19 +66,14 @@
     make tidy
     ```
 
-3. **Run Migrations**:
-    ```sh
-    make migrate
-    ```
-
-4. **Build the Project**:
+3. **Build the Project**:
     ```sh
     make build
     ```
 
-5. **Run the Application**:
+4. **Run the Application**:
     ```sh
-    make run
+    make serve
     ```
 
 ### Development Workflow
@@ -99,13 +94,15 @@ and then run:
 make dev
 ```
 
-#### Compile Tailwind CSS
+#### Compile Tailwind and Templ manually
+
+The build step will always compile Tailwind and Templ for you.
+
+You shouldn't need to run this command yourself, but if needed you can use the following commands:
 
 ```sh
 make tailwind
 ```
-
-#### Generate templ files
 
 ```sh
 make templ
@@ -119,11 +116,23 @@ To deploy the application, use Docker Compose which is configured to set the ENV
 docker-compose up -d
 ```
 
+## Cloudflare tunnel
+
+This project was designed as a sample for a fast and easy deployment. By design we decided to use Cloudflare tunnel to expose the local server to the internet. This is configured in the `docker-compose.yml` file.
+
+In theory, you could run this from home :)
+
 ## Data migrations
 
 The project supports "auto migrations" from Pocketbase if the `ENV` environment variable is set to `dev`. This feature allows you to modify records in the Pocketbase admin and automatically generate migration files in `internal/migrations`.
 
 **Note**: The `ENV` variable defaults to `dev`. Ensure to set it to `prod` when releasing. Docker Compose does this for you by default.
+
+Migrations will run automatically when the application starts. If you want to run migrations manually, you can use the following command:
+
+```sh
+make migrate
+```
 
 ## Contributing
 
