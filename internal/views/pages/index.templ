@@ -1,0 +1,65 @@
+package pages
+
+import (
+	. "myapp/internal/views/layouts"
+	. "myapp/internal/views/components"
+)
+
+templ CheckIcon() {
+	<svg class="w-3 h-3 fill-current text-primary-400 mr-2 shrink-0" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+		<path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z"></path>
+	</svg>
+}
+
+templ IndexPage() {
+	@BaseLayout("My App") {
+		@Section() {
+			<div class="max-w-6xl mx-auto px-4 sm:px-6 text-gray-600 dark:text-gray-400">
+				<div>
+					<!-- Hero content -->
+					<div class="md:grid md:grid-cols-12 md:gap-12 lg:gap-20 items-center">
+						<!-- Content -->
+						<div class="md:col-span-10 lg:col-span-10 mb-8 md:mb-0 text-center md:text-left">
+							<h1 class="font-creative h1 text-6xl mb-4 font-black" data-aos="fade-down">
+								Welcome !
+								<span class="ml-2">
+									@Badge("Component")
+								</span>
+							</h1>
+							<p class="text-lg mt-10 mb-2" data-aos="fade-down" data-aos-delay="150">
+								Your Pocketbase CMS is up and running !
+								<br/>
+								To open the admin panel, <a href="/_" class="text-teal-500">click here</a>.
+								This template is hooked up with:
+							</p>
+							<ul class="text-lg max-w-sm sm:max-w-md mx-auto md:max-w-none text-gray-600 dark:text-gray-400 mt-4 mb-2" data-aos="fade-down" data-aos-delay="450">
+								<li class="flex items-center mb-2">
+									@CheckIcon()
+									<a href="https://htmx.org/" class="text-teal-500">HTMX</a>
+								</li>
+								<li class="flex items-center mb-2">
+									@CheckIcon()
+									<a href="https://tailwindcss.com/" class="text-teal-500">TailwindCSS</a>
+								</li>
+								<li class="flex items-center mb-2">
+									@CheckIcon()
+									<a href="https://alpinejs.dev/" class="text-teal-500">AlpineJS</a>
+								</li>
+								<li class="flex items-center mb-2">
+									@CheckIcon()
+									<a href="https://go.dev/" class="text-teal-500">Go</a>
+								</li>
+							</ul>
+							<p class="text-lg mt-6 mb-2" data-aos="fade-down" data-aos-delay="150">
+								Here's a server-rendered component:
+								<div hx-get="/frag/time" hx-trigger="every 1s" hx-swap="innerHTML" class="text-xl italic">
+									<!-- HTMX response goes here -->
+								</div>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		}
+	}
+}

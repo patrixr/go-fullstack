@@ -20,3 +20,11 @@
 # Go workspace file
 go.work
 go.work.sum
+
+.DS_Store
+.env
+.out
+.data
+tmp
+*_templ.go
+public/style.css

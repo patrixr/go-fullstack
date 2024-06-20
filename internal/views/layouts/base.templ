@@ -1,0 +1,87 @@
+package layouts
+
+import (
+	. "myapp/internal/views/components"
+	"os"
+)
+
+var links = []NavLink{
+	{Name: "About", Path: "#"},
+	{Name: "Posts", Path: "#"},
+}
+
+func liveReloadEnabled() bool {
+    return os.Getenv("AIR_ENABLED") == "1"
+}
+
+templ BaseLayout(title string) {
+	<!DOCTYPE html>
+	<html lang="en" class="">
+		<head>
+			@Headers(title)
+		</head>
+		<body class="font-default antialiased bg-newspaper-500 text-gray-900 dark:bg-gray-900 dark:text-newspaper-500 tracking-tight">
+			<!-- Page wrapper -->
+			<div class="flex flex-col min-h-screen overflow-hidden">
+				@Navigation(links)
+				<!-- Page content -->
+				<main class="grow pt-32 pb-10 md:pt-40 md:pb-16">
+					{ children... }
+				</main>
+				@Footer()
+			</div>
+			@PageScripts()
+
+			if liveReloadEnabled() {
+				<div x-data="pingChecker" class="fixed top-4 right-4 animate-pulse">
+					<div :class="status === 'green' ? 'w-5 h-5 rounded-full bg-green-500' : 'w-5 h-5 rounded-full bg-red-500'"></div>
+				</div>
+				<script>
+                    function pingChecker() {
+                        return {
+                            status: 'red',
+                            init() {
+                                this.checkStatus();
+                                setInterval(() => this.checkStatus(), 1000);
+                            },
+                            async checkStatus() {
+                                try {
+                                    const response = await fetch('/');
+                                    this.status = response.ok ? 'green' : 'red';
+                                } catch (error) {
+                                    this.status = 'red';
+                                }
+                            }
+                        };
+                    }
+                </script>
+			}
+		</body>
+	</html>
+}
+
+templ PageScripts() {
+	<script src="/js/vendors/alpinejs.min.js" defer></script>
+	<script src="/js/vendors/aos.js"></script>
+	<script src="/js/vendors/htmx.1.9.10.min.js"></script>
+	<script src="/js/main.js"></script>
+}
+
+templ Headers(title string) {
+	<meta charset="utf-8"/>
+	<title>{ title }</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1"/>
+	<link href="/css/vendors/aos.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="/css/vendors/swiper-bundle.min.css"/>
+	<link href="/style.css" rel="stylesheet"/>
+	<script>
+      if (
+        localStorage.getItem("dark-mode") == "true" ||
+        !("dark-mode" in localStorage)
+      ) {
+        document.querySelector("html").classList.add("dark");
+      } else {
+        document.querySelector("html").classList.remove("dark");
+      }
+    </script>
+}

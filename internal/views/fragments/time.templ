@@ -1,0 +1,9 @@
+package fragments
+
+import (
+	"time"
+)
+
+templ Time(moment time.Time) {
+	<div>{ moment.Format(time.TimeOnly) }</div>
+}

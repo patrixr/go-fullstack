@@ -1,0 +1,13 @@
+package components
+
+templ DefaultBadge(text string) {
+	<span
+		class={ "bg-secondary-400",
+		"dark:bg-secondary-900",
+        "font-default text-gray-800 text-sm font-medium m-1 px-2.5 py-0.5 rounded dark:bg-blue-900" }
+	>{ text }</span>
+}
+
+templ Badge(text string) {
+	@DefaultBadge(text)
+}
