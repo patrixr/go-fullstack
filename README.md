@@ -4,9 +4,9 @@
 
 In today's tech landscape, we're often bombarded with endless integrations and coupling across frameworks, cloud providers, managed databases, and SaaS products.
 
-The purpose of this template is to demonstrate how to kickstart a side project with minimal integrations, freeing ourselves from the _"freemium entanglement"_ that often accompanies modern development.
+The purpose of this template is to demonstrate how to kickstart a side project with **minimal integrations**, freeing ourselves from the _"freemium entanglement"_ that often accompanies modern web development.
 
-This project is built with the following philosophy in mind:
+This project is built with the **following philosophy** in mind:
 
 > Fall in love with the problem, not the solution.
 
