@@ -21,8 +21,8 @@ RUN ARCH=${TARGETARCH} && \
     mv tailwindcss-linux-${ARCH} /app/.bin/tailwindcss
 RUN chmod +x /app/.bin/tailwindcss
 
-RUN make deps tidy
-RUN make build
+RUN go get github.com/a-h/templ/runtime
+RUN make tidy build
 
 FROM golang:1.22
 
