@@ -19,13 +19,10 @@ This means focusing on solving the problem at hand, rather than getting bogged d
 To achieve this, we've established a set of basic design principles:
 
 - **Single Codebase**: Everything should be contained within a single codebase.
-- **Easy Data Management**: Data should be straightforward to manage and migrate.
-- **Maintainability and Extensibility**: The project doesn't have to be perfect, but it should be easy to maintain and extend.
 - **Simple Deployment**: It should be easy to deploy, even from a Raspberry Pi.
-- **Focused on Side Projects**: It doesn't need to scale horizontally; this is a side project, after all.
-- **Rich in Features**: Simple does not mean basic; it should remain feature-rich.
-- **Minimal External Dependencies**: We should avoid depending on external services unless they are crucial to the project.
-- **Performance with Simplicity**: It should be performant, but not at the expense of simplicity.
+- **Vertical scaling**: It doesn't need to scale horizontally; this is a side project, after all.
+- **Feature rich**: Simple does not mean basic; it should remain feature-rich.
+- **Minimal integrations**: Avoid unnecessary integrations and dependencies.
 
 By adhering to these principles, we aim to build side projects that are not only effective but also enjoyable to develop and maintain.
 
