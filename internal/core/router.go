@@ -21,12 +21,12 @@ const DEFAULT_CACHE_DURATION = 24 * time.Hour
 // You can also define middlewares here
 func MountRoutes(app *App, router *echo.Echo) error {
 	// Pages
-	router.GET("/", renderTempl(pages.IndexPage))
+	router.GET("/", renderTempl(pages.IndexPage, true))
 
 	// Fragments
 	router.GET("/frag/time", renderTempl(func() templ.Component {
 		return fragments.Time(time.Now())
-	}))
+	}, false))
 
 	// Static content
 	router.GET("/*", apis.StaticDirectoryHandler(os.DirFS("./public"), false), cached(DEFAULT_CACHE_DURATION))
@@ -34,10 +34,12 @@ func MountRoutes(app *App, router *echo.Echo) error {
 	return nil
 }
 
-func renderTempl(h PageHandler) echo.HandlerFunc {
+func renderTempl(h PageHandler, useCache bool) echo.HandlerFunc {
 	return func(c echo.Context) error {
-		seconds := strconv.Itoa(int(DEFAULT_CACHE_DURATION.Seconds()))
-		c.Response().Header().Set("Cache-Control", "public, max-age="+seconds)
+		if useCache {
+			seconds := strconv.Itoa(int(DEFAULT_CACHE_DURATION.Seconds()))
+			c.Response().Header().Set("Cache-Control", "public, max-age="+seconds)
+		}
 		return h().Render(c.Request().Context(), c.Response().Writer)
 	}
 }
