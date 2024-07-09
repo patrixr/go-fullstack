@@ -53,11 +53,11 @@ By adhering to these principles, we aim to build side projects that are not only
 
 ### Golang
 
-Golang was an easy choice for me. It's what I call "the good kind of boring". It's simple, fast, and easy to deploy, perfect for focusing on the problem and not letting the technology get in the way.
+Golang was an easy choice. It can be described as "the good kind of boring". It's simple, fast, and easy to deploy, perfect for focusing on the problem and not letting the technology get in the way.
 
 ### Vertical Scaling
 
-Most SaaS offerings out there make the promise of a free tier with horizontal scaling. But let's be honest, we're really just binding ourselves to their platform, for something we likely don't need.
+Most SaaS offerings out there make the promise of a free tier with horizontal scaling. Realistically, we're really just binding ourselves to their platform, for something we likely don't need.
 
 I truly think people underestimate how far vertical scaling, with good old caching, can take you. This project is built with that in mind.
 

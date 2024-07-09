@@ -36,6 +36,8 @@ func MountRoutes(app *App, router *echo.Echo) error {
 
 func renderTempl(h PageHandler) echo.HandlerFunc {
 	return func(c echo.Context) error {
+		seconds := strconv.Itoa(int(DEFAULT_CACHE_DURATION.Seconds()))
+		c.Response().Header().Set("Cache-Control", "public, max-age="+seconds)
 		return h().Render(c.Request().Context(), c.Response().Writer)
 	}
 }
@@ -45,13 +47,17 @@ func renderTempl(h PageHandler) echo.HandlerFunc {
 func cached(maxAge time.Duration) echo.MiddlewareFunc {
 	return func(next echo.HandlerFunc) echo.HandlerFunc {
 		return func(c echo.Context) error {
-			if err := next(c); err != nil {
-				c.Error(err)
-			} else {
+			c.Response().Before(func() {
 				if c.Response().Status >= 200 && c.Response().Status < 300 {
 					seconds := strconv.Itoa(int(maxAge.Seconds()))
 					c.Response().Header().Set("Cache-Control", "public, max-age="+seconds)
+				} else {
+					c.Response().Header().Del("Cache-Control")
 				}
+			})
+
+			if err := next(c); err != nil {
+				c.Error(err)
 			}
 			return nil
 		}
