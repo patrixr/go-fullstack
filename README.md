@@ -118,7 +118,7 @@ I am aware it technically goes against the "minimal external dependencies" princ
 
 1. **Clone the Repository**:
     ```sh
-    git clone https://github.com/yourusername/go-fullstack.git
+    git clone https://github.com/patrixr/go-fullstack.git
     cd go-fullstack
     ```
 
